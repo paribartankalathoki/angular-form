@@ -44,7 +44,7 @@
                     <div class="col-sm-4 mb-3">
                         <div class="form-group">
                             <label>Country</label>
-                            <input type="text" name="country" class="form-control" formControlName="country" classplaceholder="Country"id="country" />
+                            <input type="text" name="country" class="form-control" formControlName="country" placeholder="Country"id="country" />
                         </div>
                     </div>
                     <div class="col-sm-4 mb-3">
@@ -58,6 +58,64 @@
                             <label>City</label>
                             <input type="text" name="city" class="form-control" formControlName="city" placeholder="City" id="city" />
                         </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-sm-12">
+                        <h6 class="title">
+                            Transaction Details
+                        </h6>
+                    </div>
+                </div>
+                <div class="transactions" #transactions *ngFor="let trxn of form.get('transactions')['controls']; let i = index;"
+                formArrayName="transactions">
+                <div [formGroupName]="i">
+                    <div class="row mt-5">
+                        <div class="col-sm-4 mb-3">
+                            <div class="form-group">
+                                <label>Total Annual Income</label>
+                                <input type="text" name="totalAnnualIncome" formControlName="totalAnnualIncome" class="form-control" placeholder="Total Annual Income" id="totalAnnualIncome" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" formGroupName="accountTransactionForm">
+                        <div class="col-sm-4 mb-3">
+                            <div class="form-group">
+                                <label>Credit Transaction Number</label>
+                                <input type="text" name="creditTransactionNumber" formControlName="creditTransactionNumber" class="form-control" placeholder="Credit Transaction Number" id="creditTransactionNumber" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <div class="form-group">
+                                <label>Credit Transaction Value</label>
+                                <input type="text" name="creditTransactionValue" class="form-control" formControlName="creditTransactionValue" placeholder="Credit Transaction Value"id="creditTransactionValue" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <div class="form-group">
+                                <label>Debit Transaction Number</label>
+                                <input type="text" name="debitTransactionNumber" class="form-control" formControlName="debitTransactionNumber" placeholder="Debit Transaction Number"id="debitTransactionNumber" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <div class="form-group">
+                                <label>Debit Transaction Value</label>
+                                <input type="text" name="debitTransactionValue" class="form-control" formControlName="debitTransactionValue" placeholder="Debit Transaction Value" id="debitTransactionValue" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4 mb-3">
+                            <div class="form-group">
+                                <label>Repayment Track With Current Bank</label>
+                                <input type="text" name="repaymentTrackWithCurrentBank" class="form-control" formControlName="repaymentTrackWithCurrentBank" placeholder="Repayment Track With Current Bank" id="repaymentTrackWithCurrentBank" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4 mb-3">
+                        <button class="btn btn-primary btn-outline" (click)="addBlankFormField()" type="button">Add more</button>
                     </div>
                 </div>
 

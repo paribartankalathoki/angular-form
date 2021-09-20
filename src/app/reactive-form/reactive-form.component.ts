@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive-form',
@@ -34,7 +34,30 @@ export class ReactiveFormComponent implements OnInit {
         state: new FormControl(),
         city: new FormControl(),
       }),
+      transactions: this.formBuilder.array([]),
     });
+    this.addBlankFormField();
+  }
+
+  public initTransactionData(): FormGroup {
+    return this.formBuilder.group({
+      totalAnnualIncome: [undefined],
+      accountTransactionForm: new FormGroup({
+        creditTransactionNumber: new FormControl(),
+        creditTransactionValue: new FormControl(),
+        debitTransactionNumber: new FormControl(),
+        debitTransactionValue: new FormControl(),
+        repaymentTrackWithCurrentBank: new FormControl(),
+      })
+    });
+  }
+
+  public addBlankFormField() {
+    (this.form.get('transactions') as FormArray).push(this.initTransactionData());
+  }
+
+  public removeFormField(index: number) {
+    (this.form.get('transactions') as FormArray).removeAt(index);
   }
 
   onSubmit() {
